@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – DriveFlow</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-left">
+        <div class="logo-wrap">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="28" height="28" rx="8" fill="#4f46e5"/>
+                <rect x="6" y="7" width="10" height="13" rx="2" fill="white" opacity="0.9"/>
+                <rect x="10" y="5" width="10" height="13" rx="2" fill="#818cf8"/>
+                <rect x="8" y="9" width="6" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+                <rect x="8" y="12" width="4" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+            </svg>
+            <span class="dash-logo"><span class="logo-accent">Drive</span>Flow</span>
+        </div>
+        <span class="welcome" id="welcome-msg">Welcome!</span>
+    </div>
+    <div class="header-right">
+        <div class="theme-toggle-wrap">
+            <span>🌙</span>
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"></button>
+            <span>☀️</span>
+        </div>
+        <button id="logout-btn" class="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+</header>
+
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Storage Indicator -->
+        <div class="storage-widget">
+            <div class="storage-header">
+                <span id="storage-count">0 files</span>
+                <span id="storage-label">0 MB of 10 GB used</span>
+            </div>
+            <div class="storage-track">
+                <div id="storage-bar" class="storage-fill"></div>
+            </div>
+        </div>
+
+        <div class="sidebar-card">
+            <h3>Folders</h3>
+            <button id="createFolderButton">＋ New Folder</button>
+            <ul id="folder-list"></ul>
+            <div class="sidebar-actions">
+                <button id="trash-button"><i class="fas fa-trash-alt"></i> Trash</button>
+                <button id="back-to-main-button"><i class="fas fa-arrow-left"></i> Back</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+        <div class="main-card">
+
+
+            <!-- Welcome Banner -->
+            <div class="welcome-banner" id="welcomeBanner">
+                <div class="wb-text">
+                    <div class="wb-title" id="bannerTitle">Good to see you! 👋</div>
+                    <div class="wb-sub">Upload, organize, and share your documents — all in one place.</div>
+                    <button class="wb-dismiss" id="dismissBanner">Got it ✓</button>
+                </div>
+                <div class="wb-art">
+                    <div class="wb-circle wc1"></div>
+                    <div class="wb-circle wc2"></div>
+                    <div class="wb-circle wc3"></div>
+                    <div class="wb-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="wb-files">
+                        <div class="wb-file wf1"><i class="fas fa-file-pdf"></i></div>
+                        <div class="wb-file wf2"><i class="fas fa-file-image"></i></div>
+                        <div class="wb-file wf3"><i class="fas fa-file-word"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload / Drop Zone -->
+            <section class="upload-section" id="drop-zone">
+                <div class="drop-hint">
+                    <span class="drop-icon">☁️</span>
+                    <span class="drop-text">Drag & drop files here, or</span>
+                </div>
+                <div class="file-upload-area">
+                    <label for="file-upload" class="file-button">Browse</label>
+                    <input type="file" id="file-upload" class="file-input">
+                    <span id="file-name-display" class="file-name-display"></span>
+                    <button id="upload-btn" class="upload-button">⬆ Upload</button>
+                </div>
+                <div id="uploadProgress">
+                    <div id="progressBar"></div>
+                    <div id="progressPercent">0%</div>
+                </div>
+            </section>
+
+            <!-- Files Section -->
+            <div class="document-table-container">
+                <div class="table-header-row">
+                    <div id="breadcrumb" class="breadcrumb"><span>Home</span></div>
+                    <div class="search-filter-row">
+                        <input type="text" id="searchInput" placeholder="🔍  Search files...">
+                        <select id="filterSelect">
+                            <option value="">All Types</option>
+                            <option value="pdf">PDF</option>
+                            <option value="docx">DOCX</option>
+                            <option value="pptx">PPTX</option>
+                            <option value="image">Images</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table class="document-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px;"></th>
+                            <th data-sort="name">Name</th>
+                            <th data-sort="size">Size</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="document-table-body"></tbody>
+                </table>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state" style="display:none;">
+                    <div class="empty-icon">📂</div>
+                    <h3>Nothing here yet</h3>
+                    <p>Upload a file or create a folder to get started</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- ── MODALS ── -->
+
+<!-- Rename Modal -->
+<div id="renameModal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>✏️ Rename</h2>
+        <input type="text" id="renameInput" placeholder="New name...">
+        <div class="modal-actions">
+            <button id="confirmRename" class="btn-primary">Rename</button>
+            <button id="cancelRename" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Share Modal -->
+<div id="shareModal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🔗 Share File</h2>
+        <p>Enter the email address to share with.</p>
+        <input type="email" id="shareEmail" placeholder="Email address...">
+        <div class="modal-actions">
+            <button id="confirmShare" class="btn-primary">Share</button>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div id="deleteModal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🗑 Move to Trash</h2>
+        <p>This file will be moved to trash. You can restore it later.</p>
+        <div class="modal-actions">
+            <button id="confirmDelete" class="btn-danger">Delete</button>
+            <button id="cancelDelete" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Folder Modal -->
+<div id="folderModal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>📁 New Folder</h2>
+        <input type="text" id="folderNameInput" placeholder="Folder name...">
+        <div class="modal-actions">
+            <button id="confirmFolder" class="btn-primary">Create</button>
+            <button id="cancelFolder" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Preview Modal -->
+<div id="previewModal" class="modal modal-preview">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content modal-content-lg">
+        <div class="preview-header">
+            <span id="previewTitle" class="preview-title"></span>
+            <span class="close">&times;</span>
+        </div>
+        <iframe id="previewFrame" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Loading Indicator -->
+<div id="loading-indicator">
+    <div class="spinner"></div>
+</div>
+
+<script src="user_dashboard.js"></script>
+</body>
+</html>

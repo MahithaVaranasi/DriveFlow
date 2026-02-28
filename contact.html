@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – DriveFlow</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="8" fill="#4f46e5"/>
+            <rect x="6" y="7" width="10" height="13" rx="2" fill="white" opacity="0.9"/>
+            <rect x="10" y="5" width="10" height="13" rx="2" fill="#818cf8"/>
+            <rect x="8" y="9" width="6" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+            <rect x="8" y="12" width="4" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+        </svg>
+        <span><span style="color:#818cf8">Drive</span>Flow</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="loginn.html" class="sign-in">Sign In</a>
+    </header>
+
+    <!-- Toast -->
+    <div id="toast-container" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;"></div>
+
+    <main>
+        <h1>Contact Us</h1>
+        <p style="color:rgba(255,255,255,0.6); margin-bottom: 32px;">Have a question or just want to say hi? Reach out below.</p>
+
+        <div class="contact-icons">
+            <a href="mailto:mahitha.varanasi2005@gmail.com" target="_blank">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://www.linkedin.com/in/mahitha-varanasi/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+
+        <form id="contactForm">
+            <label>Name</label>
+            <input type="text" id="contactName" placeholder="Your name" required>
+
+            <label>Email</label>
+            <input type="email" id="contactEmail" placeholder="your@email.com" required>
+
+            <label>Message</label>
+            <textarea id="contactMessage" placeholder="What's on your mind?" required></textarea>
+
+            <button type="submit" id="contactSubmit">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+    </main>
+
+    <style>
+        .toast{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:500;color:white;min-width:220px;max-width:340px;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:all;animation:toastIn .3s ease forwards;border:1px solid rgba(255,255,255,.1);}
+        .toast.hiding{animation:toastOut .3s ease forwards;}
+        .toast-success{background:#166534;border-color:rgba(74,222,128,.2);}
+        .toast-error{background:#7f1d1d;border-color:rgba(248,113,113,.2);}
+        @keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
+        #contactSubmit:disabled{opacity:0.6;cursor:not-allowed;transform:none!important;}
+    </style>
+
+    <script>
+        function toast(msg, type) {
+            const icons = { success: "fa-check-circle", error: "fa-times-circle" };
+            const t = document.createElement("div");
+            t.className = "toast toast-" + type;
+            t.innerHTML = `<i class="fas ${icons[type]}"></i><span>${msg}</span>`;
+            document.getElementById("toast-container").appendChild(t);
+            setTimeout(() => {
+                t.classList.add("hiding");
+                t.addEventListener("animationend", () => t.remove());
+            }, 4000);
+        }
+
+        document.getElementById("contactForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const name    = document.getElementById("contactName").value.trim();
+            const email   = document.getElementById("contactEmail").value.trim();
+            const message = document.getElementById("contactMessage").value.trim();
+            const btn     = document.getElementById("contactSubmit");
+
+            if (!name || !email || !message) {
+                toast("Please fill in all fields.", "error");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+            try {
+                const res  = await fetch("http://localhost:5000/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    toast(data.message, "success");
+                    document.getElementById("contactForm").reset();
+                } else {
+                    toast(data.message || "Something went wrong.", "error");
+                }
+            } catch {
+                toast("Could not reach the server. Is it running?", "error");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            }
+        });
+    </script>
+</body>
+</html>

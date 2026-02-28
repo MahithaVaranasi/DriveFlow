@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signupp.css">
+</head>
+<body>
+    <div class="container">
+        <div class="signup-form">
+            <h2>Sign Up</h2>
+            <p>Already have an account? <a href="loginn.html">Login</a></p>
+            <form>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Password" required>
+<input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+                <div class="role-selection">
+                    <label>
+                        <input type="radio" name="role" value="user" checked> User
+                    </label>
+                    <label>
+                        <input type="radio" name="role" value="admin"> Admin
+                    </label>
+                </div>
+                
+                <button id="signup-btn" type="submit">Create Account</button>
+            </form>
+        </div>
+        <div class="welcome-section">
+            <h1>Start managing your documents with ease!</h1>
+            <p>Securely store, access, and share files anytime, anywhere.</p>
+        </div>
+    </div>
+    <script src="signupp.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About – DriveFlow</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .about-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.25s ease;
+        }
+        .about-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(129,140,248,0.3);
+            transform: translateY(-3px);
+        }
+        .about-card-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+        .about-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .about-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-top: 0;
+        }
+        .mission-block {
+            background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(6,182,212,0.08));
+            border: 1px solid rgba(79,70,229,0.25);
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 40px;
+        }
+        .mission-block p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+            margin-top: 0;
+        }
+        @media (max-width: 600px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="8" fill="#4f46e5"/>
+            <rect x="6" y="7" width="10" height="13" rx="2" fill="white" opacity="0.9"/>
+            <rect x="10" y="5" width="10" height="13" rx="2" fill="#818cf8"/>
+            <rect x="8" y="9" width="6" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+            <rect x="8" y="12" width="4" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+        </svg>
+        <span><span style="color:#818cf8">Drive</span>Flow</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="loginn.html" class="sign-in">Sign In</a>
+    </header>
+    <main>
+        <h1>About DriveFlow</h1>
+
+        <div class="mission-block">
+            <p>Our mission is to make document management simple, secure, and efficient. Whether you are an individual or a business, we help you organize your files easily — so you spend less time managing and more time creating.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-card-icon">🔒</div>
+                <h3>Security First</h3>
+                <p>All files are encrypted with AES-256 and stored with enterprise-grade protection. Your documents are only accessible to you.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-card-icon">☁️</div>
+                <h3>Cloud Powered</h3>
+                <p>Built on Google Drive infrastructure, your files are available from any device, anytime, with zero maintenance on your end.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-card-icon">🤝</div>
+                <h3>Easy Sharing</h3>
+                <p>Share documents with teammates or clients in one click. Control permissions and revoke access whenever you need.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-card-icon">🚀</div>
+                <h3>Built for Everyone</h3>
+                <p>Designed to work for students, professionals, and teams. A clean interface that gets out of your way and just works.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

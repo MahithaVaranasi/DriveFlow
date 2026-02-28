@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works – DriveFlow</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 40px;
+            position: relative;
+        }
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 48px;
+            bottom: 48px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent2));
+            opacity: 0.3;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+            padding: 28px;
+            border-radius: 16px;
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .step:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .step-num {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(79,70,229,0.3);
+        }
+        .step-content h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .step-content p {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="8" fill="#4f46e5"/>
+            <rect x="6" y="7" width="10" height="13" rx="2" fill="white" opacity="0.9"/>
+            <rect x="10" y="5" width="10" height="13" rx="2" fill="#818cf8"/>
+            <rect x="8" y="9" width="6" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+            <rect x="8" y="12" width="4" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+        </svg>
+        <span><span style="color:#818cf8">Drive</span>Flow</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="loginn.html" class="sign-in">Sign In</a>
+    </header>
+    <main>
+        <h1>How It Works</h1>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h3>Create your account</h3>
+                    <p>Sign up in seconds with your email. Choose your role — user or admin — and you're ready to go.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h3>Upload your documents</h3>
+                    <p>Drag and drop or browse to upload files. Supports PDFs, Word docs, images, PowerPoints and more.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h3>Organize with folders</h3>
+                    <p>Create folders to keep your files structured. Use search and filters to find anything instantly.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h3>Access from anywhere</h3>
+                    <p>Your documents live in the cloud. Open, share, or manage them from any device at any time.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

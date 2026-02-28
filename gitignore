@@ -1,0 +1,23 @@
+# Environment variables — NEVER upload these
+.env
+
+# Google service account key — NEVER upload this
+google-drive-key.json
+
+# Dependencies
+node_modules/
+
+# Python virtual environment
+.venv/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

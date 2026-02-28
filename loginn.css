@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0d0d1a;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,70,229,0.2) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.container {
+    display: flex;
+    width: 860px;
+    min-height: 520px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    backdrop-filter: blur(30px);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.6);
+}
+
+.login-form {
+    width: 50%;
+    padding: 52px 48px;
+    background: rgba(255,255,255,0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin: 8px 0 24px;
+}
+
+a {
+    color: #818cf8;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #a5b4fc;
+    text-decoration: underline;
+}
+
+form input {
+    width: 100%;
+    padding: 13px 16px;
+    margin: 8px 0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+form input::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+form input:focus {
+    border-color: #818cf8;
+    background: rgba(255,255,255,0.09);
+    box-shadow: 0 0 0 3px rgba(129,140,248,0.15);
+}
+
+.options {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.25s ease;
+    font-family: 'DM Sans', sans-serif;
+}
+
+button:hover {
+    background: #818cf8;
+    box-shadow: 0 0 20px rgba(129,140,248,0.35);
+    transform: translateY(-1px);
+}
+
+.animated-text {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-section {
+    width: 50%;
+    background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+}
+
+.welcome-section::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+}
+
+.welcome-section h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.welcome-section:hover h1 {
+    transform: scale(1.04);
+}
+
+.welcome-section p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 14px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 680px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+        min-height: auto;
+    }
+    .login-form, .welcome-section {
+        width: 100%;
+        padding: 40px 32px;
+    }
+}
