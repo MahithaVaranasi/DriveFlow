@@ -135,10 +135,7 @@ driveflow/
 
 ---
 
-## Screenshots
-> Add screenshots here after deployment
 
----
 
 ## Author
 **Mahitha Varanasi**  
