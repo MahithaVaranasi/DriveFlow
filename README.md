@@ -39,7 +39,7 @@ A full-stack document management web application built with Node.js, MySQL, and 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/driveflow.git
+git clone https://github.com/MahithaVaranasi/DriveFlow.git
 cd driveflow
 ```
 
